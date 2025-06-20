@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>TAKSAN</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #icerik {
+      text-align: center;
+      color: white;
+    }
+    h1, button {
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      margin: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    #foto {
+      max-width: 90%;
+      height: auto;
+      display: none;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="icerik">
+    <h1>SİGARA İÇELİM Mİ</h1>
+    <button id="evetBtn">Evet</button>
+    <button id="hayirBtn">Hayır</button>
+    <img id="foto" src="" alt="Sonuç Fotoğrafı">
+  </div>
+
+  <script>
+    const evetBtn = document.getElementById('evetBtn');
+    const hayirBtn = document.getElementById('hayirBtn');
+    const h1 = document.querySelector('h1');
+    const foto = document.getElementById('foto');
+
+    evetBtn.onclick = () => {
+      gösterResim("https://c.files.bbci.co.uk/17CDD/production/_92010579_hi035938954.jpg");
+    };
+
+    hayirBtn.onclick = () => {
+      gösterResim("https://www.shutterstock.com/image-photo/chimp-chimpanzee-monkey-ape-sad-260nw-553094830.jpg");
+    };
+
+    function gösterResim(resimURL) {
+      h1.remove();
+      evetBtn.remove();
+      hayirBtn.remove();
+      foto.src = resimURL;
+      foto.style.display = "block";
+    }
+
+    foto.onclick = () => {
+      location.reload();
+    };
+  </script>
+</body>
+</html>
