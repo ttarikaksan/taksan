@@ -39,48 +39,274 @@
     }
   </style>
 </head>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eğitim Değerlendirme Sınavı</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:16px;background:#f3f4f6;}
+    .container{max-width:860px;margin:24px auto;background:#fff;padding:24px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.08);}
+    h1{font-size:1.5rem;margin-bottom:6px;}
+    p.desc{color:#374151;margin-bottom:18px;}
+    fieldset{border:1px solid #e5e7eb;padding:12px;border-radius:8px;margin-bottom:14px;}
+    legend{font-weight:600;}
+    label{display:block;margin:8px 0;}
+    .radio-row{display:flex;flex-wrap:wrap;gap:12px;}
+    .submit{background:#0ea5a4;color:#fff;border:none;padding:10px 14px;border-radius:8px;font-weight:600;cursor:pointer;}
+    .sr-only{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;}
+  </style>
+</head>
 <body>
-  <h1> KAHVE </h1>
-  <button id="evetBtn">Evet</button>
-  <button id="hayirBtn">Hayır</button>
-  <div id="mesaj"></div>
+  <div class="container">
+    <h1 id="title">Eğitim Değerlendirme Sınavı</h1>
+    <p class="desc" id="desc">Bu form, tüm katılımcılardan otomatik olarak e-posta adresi topluyor.</p>
+
+    <!-- FORM: FORM_ACTION_URL kısmını Apps Script URL ile değiştir -->
+    <form id="quizForm" action="FORM_ACTION_URL" method="POST" aria-labelledby="title desc">
+      <!-- E-posta otomatik toplanmıyorsa kullanıcıya email alanı koy -->
+      <label for="email">E-posta (otomatik toplanmıyorsa giriniz)</label>
+      <input id="email" name="email" type="email" required style="padding:8px;width:100%;margin-bottom:12px;border-radius:6px;border:1px solid #d1d5db;">
+
+      <!-- Soru 1 -->
+      <fieldset>
+        <legend>Aşağıdaki suçlardan hangisi bilişim suçuna örnek değildir?</legend>
+        <div class="radio-row" role="radiogroup" aria-labelledby="">
+          <label><input type="radio" name="s1" value="E-posta hesabınızın çalınması" required> E-posta hesabınızın çalınması</label>
+          <label><input type="radio" name="s1" value="Kredi kartı bilgilerinizin çalınması"> Kredi kartı bilgilerinizin çalınması</label>
+          <label><input type="radio" name="s1" value="Evinizdeki bilgisayarınızın çalınması"> Evinizdeki bilgisayarınızın çalınması</label>
+          <label><input type="radio" name="s1" value="Sosyal medya hesabınızın çalınması veya kopyalanması"> Sosyal medya hesabınızın çalınması veya kopyalanması</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 2 -->
+      <fieldset>
+        <legend>İnternet üzerinde yapılan suçların web üzerinden ihbar edilmesini sağlayan web sitesi adresi hangisidir?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s2" value="www.eba.gov.tr" required> www.eba.gov.tr</label>
+          <label><input type="radio" name="s2" value="www.mhrs.gov.tr"> www.mhrs.gov.tr</label>
+          <label><input type="radio" name="s2" value="www.ihbaret.com.tr"> www.ihbaret.com.tr</label>
+          <label><input type="radio" name="s2" value="www.ihbarweb.org.tr"> www.ihbarweb.org.tr</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 3 -->
+      <fieldset>
+        <legend>Güvenlik nedeniyle bilgisayarınıza kurulacak programlar hakkında ne yapılmalıdır?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s3" value="Internette önerilen programları kurarım" required> İnternette önerilen programları kurarım</label>
+          <label><input type="radio" name="s3" value="IT birimine danışmadan hiçbir program kurmam"> IT birimine danışmadan hiçbir program kurmam</label>
+          <label><input type="radio" name="s3" value="İhtiyacıma yönelik programı yüklerim"> İhtiyacıma yönelik programı yüklerim</label>
+          <label><input type="radio" name="s3" value="Arkadaşımın önerdiği uygulamayı hemen yüklerim"> Arkadaşımın önerdiği uygulamayı hemen yüklerim</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 4 -->
+      <fieldset>
+        <legend>Bilmediğiniz bir e-posta adresinden gelen ve dosya içeren mesaj size ulaştığında ne yapmalısınız?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s4" value="Dosyayı hemen açmalıyım" required> Dosyayı hemen açmalıyım</label>
+          <label><input type="radio" name="s4" value="Göndereni arayıp dosya hakkında bilgi alırım"> Göndereni arayıp dosya hakkında bilgi alırım</label>
+          <label><input type="radio" name="s4" value="IT (Bilgi İşlem) birimine bildiririm"> IT (Bilgi İşlem) birimine bildiririm</label>
+          <label><input type="radio" name="s4" value="E-postayı siler, bir daha bakmam"> E-postayı siler, bir daha bakmam</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 5 -->
+      <fieldset>
+        <legend>"Şifre sıfırlama" e-postaları hakkında ne yapmalıyız?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s5" value="Hemen bağlantıya tıklayıp şifremi değiştiririm" required> Hemen bağlantıya tıklayıp şifremi değiştiririm</label>
+          <label><input type="radio" name="s5" value="Gönderen adresine dikkat ederim ve emin olmadıkça tıklamam"> Gönderen adresine dikkat ederim ve emin olmadıkça tıklamam</label>
+          <label><input type="radio" name="s5" value="Şifre sıfırlama bağlantılarını arkadaşlarımla paylaşırım"> Şifre sıfırlama bağlantılarını arkadaşlarımla paylaşırım</label>
+          <label><input type="radio" name="s5" value="Hiç okumadan silerim"> Hiç okumadan silerim</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 6 -->
+      <fieldset>
+        <legend>İki adımlı kimlik doğrulama (2FA) kullanmak neden önemlidir?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s6" value="Sadece şifre ile giriş yapılmasına göre daha fazla güvenlik sağlar" required> Sadece şifre ile giriş yapılmasına göre daha fazla güvenlik sağlar</label>
+          <label><input type="radio" name="s6" value="E-posta trafiğini hızlandırmak için kullanılır"> E-posta trafiğini hızlandırmak için kullanılır</label>
+          <label><input type="radio" name="s6" value="Parolaları hatırlamayı kolaylaştırır"> Parolaları hatırlamayı kolaylaştırır</label>
+          <label><input type="radio" name="s6" value="Bilgisayarı daha hızlı çalıştırır"> Bilgisayarı daha hızlı çalıştırır</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 7 -->
+      <fieldset>
+        <legend>Sistem güncellemeleri neden zamanında yapılmalıdır?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s7" value="Kullanıcının isteğine bağlı olarak sistemi özelleştirmek için" required> Kullanıcının isteğine bağlı olarak sistemi özelleştirmek için</label>
+          <label><input type="radio" name="s7" value="Bilgisayar ekran çözünürlüğünü değiştirmek için"> Bilgisayar ekran çözünürlüğünü değiştirmek için</label>
+          <label><input type="radio" name="s7" value="Yeni özellikler eklemek ve mevcut hataları düzeltmek için"> Yeni özellikler eklemek ve mevcut hataları düzeltmek için</label>
+          <label><input type="radio" name="s7" value="Cihazın görünümünü değiştirmek için"> Cihazın görünümünü değiştirmek için</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 8 -->
+      <fieldset>
+        <legend>Parolalarla ilgili hangisi doğrudur?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s8" value="Her platformda aynı parolayı kullanmak kolaylık sağlar" required> Her platformda aynı parolayı kullanmak kolaylık sağlar</label>
+          <label><input type="radio" name="s8" value="Parolamı e-posta ile göndermemde sakınca yoktur"> Parolamı e-posta ile göndermemde sakınca yoktur</label>
+          <label><input type="radio" name="s8" value="Karmaşık ve benzersiz bir parola oluşturmak güvenliği artırır"> Karmaşık ve benzersiz bir parola oluşturmak güvenliği artırır</label>
+          <label><input type="radio" name="s8" value="Cep telefonunuza gelen bir güvenlik doğrulama kodunu biri sizin adınıza isterse ne yapmalısınız?"> Cep telefonunuza gelen bir güvenlik doğrulama kodunu biri sizin adınıza isterse ne yapmalısınız?</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 9 -->
+      <fieldset>
+        <legend>Cep telefonunuza gelen bir güvenlik doğrulama kodunu biri sizin adınıza isterse ne yapmalısınız?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s9" value="1. Kodu hemen paylaşırım" required> 1. Kodu hemen paylaşırım</label>
+          <label><input type="radio" name="s9" value="Sadece tanıdığım biriyse paylaşırım"> Sadece tanıdığım biriyse paylaşırım</label>
+          <label><input type="radio" name="s9" value="Hiç kimseyle paylaşmam ve durumu IT birimine bildiririm"> Hiç kimseyle paylaşmam ve durumu IT birimine bildiririm</label>
+          <label><input type="radio" name="s9" value="Kodu sosyal medya üzerinden gönderirim"> Kodu sosyal medya üzerinden gönderirim</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 10 -->
+      <fieldset>
+        <legend>Çocuklarınızın güvenli internet kullanımıyla ilgili aşağıdaki durumlardan hangisi yanlıştır?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s10" value="Sosyal medyada çocuğunuzla arkadaş olmak" required> Sosyal medyada çocuğunuzla arkadaş olmak</label>
+          <label><input type="radio" name="s10" value="Küçük yaştaki çocukların yetişkin kontrolünde kullanması"> Küçük yaştaki çocukların yetişkin kontrolünde kullanması</label>
+          <label><input type="radio" name="s10" value="Çocuklarımızı tamamen internetten uzak tutmak"> Çocuklarımızı tamamen internetten uzak tutmak</label>
+          <label><input type="radio" name="s10" value="Web tarayıcı programlarının geçmiş bölümünün kontrolü"> Web tarayıcı programlarının geçmiş bölümünün kontrolü</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 11 -->
+      <fieldset>
+        <legend>Aşağıdakilerden hangisi zararlı bir yazılım değildir?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s11" value="Paint" required> Paint</label>
+          <label><input type="radio" name="s11" value="Truva atı"> Truva atı</label>
+          <label><input type="radio" name="s11" value="Solucan"> Solucan</label>
+          <label><input type="radio" name="s11" value="Virüs"> Virüs</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 12 -->
+      <fieldset>
+        <legend>Aşağıdakilerden hangisi veri kaybının olası nedenlerinden değildir?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s12" value="Donanım hataları" required> Donanım hataları</label>
+          <label><input type="radio" name="s12" value="Zararlı program veya saldırgan kişilerin müdahalesi"> Zararlı program veya saldırgan kişilerin müdahalesi</label>
+          <label><input type="radio" name="s12" value="Dosyanın ve bilgisayarın çok uzun bir süre kullanılmaması, eskimesi"> Dosyanın ve bilgisayarın çok uzun bir süre kullanılmaması, eskimesi</label>
+          <label><input type="radio" name="s12" value="Kullanıcı hatası ile dosyaların yanlışlıkla silinmesi"> Kullanıcı hatası ile dosyaların yanlışlıkla silinmesi</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 13 -->
+      <fieldset>
+        <legend>Aşağıdakilerden hangisi güvenli bir davranıştır?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s13" value="Parolayı bir not defterine yazmak" required> Parolayı bir not defterine yazmak</label>
+          <label><input type="radio" name="s13" value="Bilgisayarı açık bırakıp odadan ayrılmak"> Bilgisayarı açık bırakıp odadan ayrılmak</label>
+          <label><input type="radio" name="s13" value="Tanımadığım kişilerin e-posta eklerini açmamak"> Tanımadığım kişilerin e-posta eklerini açmamak</label>
+          <label><input type="radio" name="s13" value="Bilmediğim bağlantılara tıklamak"> Bilmediğim bağlantılara tıklamak</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 14 -->
+      <fieldset>
+        <legend>Ziraat bankası internet bankacılığını kullanırken aşağıdaki adreslerden hangisi kullanmak güvenlik açısından uygundur?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s14" value="http://bireysel.ziraatbank.com.tr" required> http://bireysel.ziraatbank.com.tr</label>
+          <label><input type="radio" name="s14" value="http://bireysel.ziraatbank.web.tr"> http://bireysel.ziraatbank.web.tr</label>
+          <label><input type="radio" name="s14" value="http://bireysel.ziraatbank.com"> http://bireysel.ziraatbank.com</label>
+          <label><input type="radio" name="s14" value="https://bireysel.ziraatbank.com.tr"> https://bireysel.ziraatbank.com.tr</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 15 -->
+      <fieldset>
+        <legend>Aşağıdakilerden hangisi bir oltalama (phishing) saldırısının göstergesi olabilir?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s15" value="Sıradan bir iş için acil işlem yapmanızın istenmesi" required> Sıradan bir iş için acil işlem yapmanızın istenmesi</label>
+          <label><input type="radio" name="s15" value="Resmî logoların olması"> Resmî logoların olması</label>
+          <label><input type="radio" name="s15" value="E-posta içinde uzun açıklamalar yapılması"> E-posta içinde uzun açıklamalar yapılması</label>
+          <label><input type="radio" name="s15" value="E-postada arkadaş isminin geçmesi"> E-postada arkadaş isminin geçmesi</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 16 -->
+      <fieldset>
+        <legend>Aşağıdakilerden hangisi internet ortamındaki siber tuzaklara örnek değildir?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s16" value="Anti virüs programınızdan gelen uyarı iletisi" required> Anti virüs programınızdan gelen uyarı iletisi</label>
+          <label><input type="radio" name="s16" value="İnternette gezinirken isteğiniz dışında açılan sayfalar"> İnternette gezinirken isteğiniz dışında açılan sayfalar</label>
+          <label><input type="radio" name="s16" value="Arkadaşınızdan gelen “Hediye telefon vb kazandınız” mesajı"> Arkadaşınızdan gelen “Hediye telefon vb kazandınız” mesajı</label>
+          <label><input type="radio" name="s16" value="E-postanıza gelen “bu iletiyi 10 kişiye gönder” mesajı"> E-postanıza gelen “bu iletiyi 10 kişiye gönder” mesajı</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 17 -->
+      <fieldset>
+        <legend>Sosyal medyayı güvenli bir şekilde kullanmak için aşağıdakilerden hangisi yanlıştır?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s17" value="Tanımadığınız kişilerden gelen istekleri kabul etmeyin." required> Tanımadığınız kişilerden gelen istekleri kabul etmeyin.</label>
+          <label><input type="radio" name="s17" value="Paylaşımlarınızı herkese açık bir şekilde yapın."> Paylaşımlarınızı herkese açık bir şekilde yapın.</label>
+          <label><input type="radio" name="s17" value="Arkadaşınız bile olsa kişisel bilgilerinizi vermeyin."> Arkadaşınız bile olsa kişisel bilgilerinizi vermeyin.</label>
+          <label><input type="radio" name="s17" value="Arkadaşınızdan gelen “hediye vb” mesajlarını dikkate almayın."> Arkadaşınızdan gelen “hediye vb” mesajlarını dikkate almayın.</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 18 -->
+      <fieldset>
+        <legend>İş yerindeki bilgisayarımı kullanmadığımda ne yapmalıyım?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s18" value="Masaüstünde bırakırım" required> Masaüstünde bırakırım</label>
+          <label><input type="radio" name="s18" value="Ekranı kapatırım"> Ekranı kapatırım</label>
+          <label><input type="radio" name="s18" value="Bilgisayarı kilitler veya oturumu kapatırım"> Bilgisayarı kilitler veya oturumu kapatırım</label>
+          <label><input type="radio" name="s18" value="Bir arkadaşımın kullanmasına izin veririm"> Bir arkadaşımın kullanmasına izin veririm</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 19 -->
+      <fieldset>
+        <legend>Aşağıdaki parolalardan hangisi bulunması en zor (Güçlü Parola) paroladır?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s19" value="12345678" required> 12345678</label>
+          <label><input type="radio" name="s19" value="15ANTalya"> 15ANTalya</label>
+          <label><input type="radio" name="s19" value="+24+ANTalya-14-"> +24+ANTalya-14-</label>
+          <label><input type="radio" name="s19" value="1234ABCD"> 1234ABCD</label>
+        </div>
+      </fieldset>
+
+      <!-- Soru 20 -->
+      <fieldset>
+        <legend>Bilgisayarımızdaki dosyaların bazı durumlarda zarar görmemesi için aşağıdakilerden hangisi yapılmalıdır?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="s20" value="Dosyalarımızı sadece bilgisayarımızın C sürücüsünde saklamalıyız." required> Dosyalarımızı sadece bilgisayarımızın C sürücüsünde saklamalıyız.</label>
+          <label><input type="radio" name="s20" value="Anti virüs programı kullanmamalıyız."> Anti virüs programı kullanmamalıyız.</label>
+          <label><input type="radio" name="s20" value="Dosyalarımızı sıkıştırma programı kullanarak saklamalıyız"> Dosyalarımızı sıkıştırma programı kullanarak saklamalıyız</label>
+          <label><input type="radio" name="s20" value="Birimler için oluşturulan dosya depolama alanını kullanmalıyız."> Birimler için oluşturulan dosya depolama alanını kullanmalıyız.</label>
+        </div>
+      </fieldset>
+
+      <button class="submit" type="submit">Gönder</button>
+    </form>
+
+    <p style="margin-top:12px;color:#6b7280;font-size:0.9rem;">
+      Not: Bu form ekran okuyucu desteğiyle uyumludur. Gerektiğinde e-posta alanını otomatik toplamak için Apps Script içinde ek alanlar kullanabilirsin.
+    </p>
+  </div>
 
   <script>
-    const evetBtn = document.getElementById('evetBtn');
-    const hayirBtn = document.getElementById('hayirBtn');
-    const mesaj = document.getElementById('mesaj');
-
-    function gösterMesajVeBasaDon(metin) {
-      mesaj.textContent = metin;
-      evetBtn.remove();
-      hayirBtn.remove();
-
-      const basaDonBtn = document.createElement('button');
-      basaDonBtn.textContent = 'Başa Dön';
-      basaDonBtn.style.position = 'static';
-      basaDonBtn.onclick = () => location.reload();
-      document.body.appendChild(basaDonBtn);
-    }
-
-    evetBtn.addEventListener('click', () => {
-      gösterMesajVeBasaDon("Doğru seçenek");
-    });
-
-    hayirBtn.addEventListener('click', () => {
-      gösterMesajVeBasaDon("Başa dön");
-    });
-
-    // Hayır butonunun üstüne gelince kaçması için:
-    hayirBtn.addEventListener('mouseenter', () => {
-      const maxX = window.innerWidth - hayirBtn.offsetWidth;
-      const maxY = window.innerHeight - hayirBtn.offsetHeight;
-
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
-
-      hayirBtn.style.left = `${randomX}px`;
-      hayirBtn.style.top = `${randomY}px`;
+    // Basit kullanıcı deneyimi: form gönderildikten sonra butonu disable et
+    document.getElementById('quizForm').addEventListener('submit', function(e){
+      var btn = document.querySelector('.submit');
+      btn.disabled = true;
+      btn.textContent = 'Gönderiliyor...';
     });
   </script>
 </body>
 </html>
+
+</html>
+
